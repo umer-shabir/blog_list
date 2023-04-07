@@ -1,69 +1,58 @@
-const lodash = require('lodash')
+const lodash = require("lodash");
 
 const dummy = (blogs) => {
-    return 1
+  return 1
 }
 
 const totalLikes = (blogs) => {
-    const reducer = (sum, blogs) => {
-        return sum + blogs.likes
-    }
-
-    return blogs.reduce(reducer, 0)
+  return blogs.length === 0
+    ? 0
+    : blogs.reduce((sum, post) => sum + post.likes, 0)
 }
 
 const favoriteBlog = (blogs) => {
-    if (blogs.length === 0) {
-        return null;    
-    }
+  if (blogs.length === 0) return null
 
-    const mostLiked = blogs.reduce((prev, curr) => {
-        return prev.likes > curr.likes ? prev : curr
-    })
+  const mostLiked = blogs.reduce((prev, curr) => {
+    return prev.likes > curr.likes ? prev : curr
+  })
 
-    return {
-        title: mostLiked.title,
-        author: mostLiked.author,
-        likes: mostLiked.likes
-    }
+  return {
+    title: mostLiked.title,
+    author: mostLiked.author,
+    likes: mostLiked.likes,
+  }
 }
 
 const mostBlogs = (blogs) => {
+  if (blogs.length === 0) return null
 
-    if (blogs.length === 0) {
-        return null
-    }
+  const authorCount = lodash.countBy(blogs, "author")
 
-    const authorCount = lodash.countBy(blogs, 'author')
+  const topAuthor = Object.keys(authorCount).reduce((a, b) => {
+    return authorCount[a] > authorCount[b] ? a : b
+  })
 
-    const topAuthor = Object.keys(authorCount).reduce((prev, curr) => {
-        return authorCount[prev] > authorCount[curr] ? prev : curr
-    })
-
-    return {
-        author: topAuthor,
-        blogs: authorCount[topAuthor]
-    }
+  return {
+    author: topAuthor,
+    blogs: authorCount[topAuthor],
+  }
 }
 
 const mostLikes = (blogs) => {
-    if (blogs.length === 0) return null
+  if (blogs.length === 0) return null
 
-    const likesCount = lodash(blogs).groupBy('author').map((objs, key) => ({
-        author: key,
-        likes: lodash.sumBy(objs, 'likes')
+  const likesCount = lodash(blogs)
+    .groupBy("author")
+    .map((objs, key) => ({
+      author: key,
+      likes: lodash.sumBy(objs, "likes"),
     }))
     .value()
 
-    return likesCount.reduce((prev, curr) => {
-        return prev.likes > curr.likes ? prev : curr
-    }) 
+  return likesCount.reduce((a, b) => {
+    return a.likes > b.likes ? a : b
+  })
 }
 
-module.exports = {
-    dummy,
-    totalLikes,
-    favoriteBlog,
-    mostBlogs,
-    mostLikes,
-}
+module.exports = { dummy, totalLikes, favoriteBlog, mostBlogs, mostLikes }
