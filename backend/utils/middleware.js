@@ -12,20 +12,34 @@ const unknownEndpoint = (request, response) => {
     response.stats(404).send({ error: 'Unknown Endpoint'})
 }
 
-const errorHandler = (error, request, respone, next) => {
+const errorHandler = (error, request, response, next) => {
     logger.error(error.message)
 
     if(error.name === 'CastError') {
-        return respone.status(400).send({ error: 'Malformatted id'})
+        return response.status(400).send({ error: 'Malformatted id'})
     } else if (error.name === 'ValidationError') {
-        return respone.status(400).json({ error: error.message })
+        return response.status(400).json({ error: error.message })
+    } else if (error.name === 'JsonWebTokenError') {
+        return response.status(400).json({ error: error.message})
     }
 
     next(error)
 }
 
+const tokenExtractor = (request, response, next) => {
+    const authorization = request.get('authorization')
+    if (authorization && authorization.startsWith('Bearer ')) {
+        request.token = authorization.substring(7)
+    } else {
+        request.token = null
+    }
+
+    next()
+}
+
 module.exports = {
     requrestLogger,
     unknownEndpoint,
-    errorHandler
+    errorHandler,
+    tokenExtractor
 }
