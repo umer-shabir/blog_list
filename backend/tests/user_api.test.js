@@ -137,3 +137,7 @@ describe('When there is initially one user in db', () => {
     expect(usersAtEnd).toEqual(usersAtStart)
   })
 })
+
+afterAll(async () => {
+  await mongoose.connection.close()
+})

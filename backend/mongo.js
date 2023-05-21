@@ -1,5 +1,4 @@
 require('dotenv').config()
-const { forEach } = require('lodash')
 const mongoose = require('mongoose')
 
 const url = process.env.TEST_MONGODB_URI
@@ -24,8 +23,8 @@ const blog = new Blog({
 })
 
 /*blog.save().then(result => {
-    console.log('saved')
-    mongoose.connection.close()
+  console.log('saved')
+  mongoose.connection.close()
 })*/
 
 Blog.find({}).then(result => {

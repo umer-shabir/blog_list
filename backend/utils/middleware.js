@@ -12,7 +12,7 @@ const requrestLogger = (request, response, next) => {
 }
 
 const unknownEndpoint = (request, response) => {
-  response.stats(404).send({ error: 'Unknown Endpoint' })
+  response.status(404).send({ error: 'Unknown Endpoint' })
 }
 
 const errorHandler = (error, request, response, next) => {
@@ -23,6 +23,8 @@ const errorHandler = (error, request, response, next) => {
   } else if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
   } else if (error.name === 'JsonWebTokenError') {
+    return response.status(401).json({ error: error.message })
+  } else if (error.name === 'TokenExpiredError') {
     return response.status(401).json({ error: error.message })
   }
 

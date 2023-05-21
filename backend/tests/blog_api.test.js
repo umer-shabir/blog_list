@@ -19,7 +19,7 @@ describe('when there is initially some blogs saved', () => {
     await api
       .get('/api/blogs')
       .expect(200)
-      .expect('Content-Type', /application\/json/);
+      .expect('Content-Type', /application\/json/)
   })
 
   test('there are 6 blogs', async () => {
@@ -32,12 +32,12 @@ describe('when there is initially some blogs saved', () => {
   })
 
   test('blogs have id property named id instead of _id', async () => {
-    const response = await api.get("/api/blogs");
+    const response = await api.get('/api/blogs')
 
-    const ids = response.body.map((blog) => blog.id);
+    const ids = response.body.map((blog) => blog.id)
 
     for (const id of ids) {
-      expect(id).toBeDefined();
+      expect(id).toBeDefined()
     }
   })
 })

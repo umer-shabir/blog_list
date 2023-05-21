@@ -1,4 +1,4 @@
-const lodash = require("lodash");
+const lodash = require('lodash')
 
 const dummy = (blogs) => {
   return 1
@@ -27,7 +27,7 @@ const favoriteBlog = (blogs) => {
 const mostBlogs = (blogs) => {
   if (blogs.length === 0) return null
 
-  const authorCount = lodash.countBy(blogs, "author")
+  const authorCount = lodash.countBy(blogs, 'author')
 
   const topAuthor = Object.keys(authorCount).reduce((a, b) => {
     return authorCount[a] > authorCount[b] ? a : b
@@ -43,10 +43,10 @@ const mostLikes = (blogs) => {
   if (blogs.length === 0) return null
 
   const likesCount = lodash(blogs)
-    .groupBy("author")
+    .groupBy('author')
     .map((objs, key) => ({
       author: key,
-      likes: lodash.sumBy(objs, "likes"),
+      likes: lodash.sumBy(objs, 'likes'),
     }))
     .value()
 
