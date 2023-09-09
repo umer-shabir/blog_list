@@ -21,13 +21,13 @@ const LoginForm = ({ login }) => {
       <form onSubmit={handleLogin}>
         <div>
           <label>Username&nbsp;</label>
-          <input type="text" value={username} name="username" onChange={({ target }) => setUsername(target.value)} />
+          <input type="text" value={username} id="username" onChange={({ target }) => setUsername(target.value)} />
         </div>
         <div>
           <label>Password{' '}</label>
-          <input type="password" value={password} name="password" onChange={({ target }) => setPassword(target.value)} />
+          <input type="password" value={password} id="password" onChange={({ target }) => setPassword(target.value)} />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" id="login-btn">Login</button>
       </form>
     </div>
   )

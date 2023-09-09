@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ProtoTypes from 'prop-types'
 
 const Blog = ({ blog, username, updateLikes, removeBlog }) => {
   const [view, setView] = useState(false)
@@ -25,29 +26,31 @@ const Blog = ({ blog, username, updateLikes, removeBlog }) => {
   }
 
   return (
-    <div className='blog'>
-      {view ? <div>
-        {blog.title} {blog.author}
-        <button onClick={toggleView}>Hide</button>
-        <br />
-        {blog.url}
-        <br />
-        Likes {blog.likes} {' '}
-        <button onClick={handleLike}>Like</button>
-        <br />
-        {blog.user.name}
-        <br />
+    <div className="blog">
+      <div>
+        {blog.title} {blog.author} {' '}
+        <button onClick={toggleView}>{view ? 'Hide' : 'View'}</button>
+      </div>
+      {view && <div>
+        <a href={blog.url}>{blog.url}</a>
+        <div>
+          Likes {blog.likes} {' '}
+          <button id="like-btn" onClick={handleLike}>Like</button>
+        </div>
+        <div>{blog.user.name}</div>
         {blog.user.username === username && (
           <button onClick={deleteBlog}>Remove</button>
         )}
-      </div> :
-        <div>
-          {blog.title} {blog.author} {' '}
-          <button onClick={toggleView}>View</button>
-        </div>
+      </div>
       }
     </div>
   )
+}
+
+Blog.prototypes = {
+  updateLikes: ProtoTypes.func.isRequired,
+  removeBlog: ProtoTypes.func.isRequired,
+  username: ProtoTypes.string.isRequired
 }
 
 export default Blog
