@@ -13,7 +13,7 @@ describe('blog test', () => {
     user: {
       username: 'test',
       name: 'Test User',
-    }
+    },
   }
 
   const handleLike = jest.fn()
@@ -23,7 +23,9 @@ describe('blog test', () => {
   })
 
   test('renders only blog title and author', () => {
-    const element = screen.getByText('Component testing is done with react-testing-library Jest')
+    const element = screen.getByText(
+      'Component testing is done with react-testing-library Jest'
+    )
     expect(element).toBeDefined()
 
     const urlElement = screen.queryByText('https://jestjs.io/')
@@ -57,4 +59,3 @@ describe('blog test', () => {
     expect(handleLike.mock.calls).toHaveLength(2)
   })
 })
-

@@ -51,9 +51,13 @@ describe('BLog app', function () {
 
     it('A blog can be created', function () {
       cy.contains('Create new blog').click()
-      cy.get('input[placeholder=\'Write blog title\']').type('test blog with cypress')
-      cy.get('input[placeholder=\'Write blog author\']').type('cpyress')
-      cy.get('input[placeholder=\'Write blog url\']').type('https://www.cypress.io/')
+      cy.get("input[placeholder='Write blog title']").type(
+        'test blog with cypress'
+      )
+      cy.get("input[placeholder='Write blog author']").type('cpyress')
+      cy.get("input[placeholder='Write blog url']").type(
+        'https://www.cypress.io/'
+      )
       cy.get('#create').click()
 
       cy.contains('test blog with cypress')
@@ -61,9 +65,21 @@ describe('BLog app', function () {
 
     describe('and several blogs exisits', function () {
       beforeEach(function () {
-        cy.createBlog({ title: 'test blog 1', author: 'test author 1', url: 'www.test1.com' })
-        cy.createBlog({ title: 'test blog 2', author: 'test author 2', url: 'www.test2.com' })
-        cy.createBlog({ title: 'test blog 3', author: 'test author 3', url: 'www.test3.com' })
+        cy.createBlog({
+          title: 'test blog 1',
+          author: 'test author 1',
+          url: 'www.test1.com',
+        })
+        cy.createBlog({
+          title: 'test blog 2',
+          author: 'test author 2',
+          url: 'www.test2.com',
+        })
+        cy.createBlog({
+          title: 'test blog 3',
+          author: 'test author 3',
+          url: 'www.test3.com',
+        })
       })
 
       it('user can like a blog', function () {

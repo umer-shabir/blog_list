@@ -24,5 +24,4 @@ test('blog form calls the event handler with the right details', async () => {
   expect(createBlog.mock.calls[0][0].title).toBe('test blog')
   expect(createBlog.mock.calls[0][0].author).toBe('test author')
   expect(createBlog.mock.calls[0][0].url).toBe('test url')
-
 })

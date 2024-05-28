@@ -10,7 +10,7 @@ const blogSchema = new mongoose.Schema({
   title: String,
   author: String,
   url: String,
-  likes: Number
+  likes: Number,
 })
 
 const Blog = mongoose.model('Blog', blogSchema)
@@ -19,7 +19,7 @@ const blog = new Blog({
   title: 'SecondTestBlog',
   author: 'TestUser2',
   url: 'Secondblog.com',
-  likes: 1
+  likes: 1,
 })
 
 /*blog.save().then(result => {
@@ -27,8 +27,8 @@ const blog = new Blog({
   mongoose.connection.close()
 })*/
 
-Blog.find({}).then(result => {
-  result.forEach(blog => {
+Blog.find({}).then((result) => {
+  result.forEach((blog) => {
     console.log(blog)
   })
   mongoose.connection.close()

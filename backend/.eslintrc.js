@@ -6,7 +6,10 @@ module.exports = {
     'node': true,
     'jest': true
   },
-  'extends': 'eslint:recommended',
+  'extends': [
+    'eslint:recommended',
+    'prettier'
+  ],
   'overrides': [
   ],
   'parserOptions': {
@@ -23,7 +26,8 @@ module.exports = {
     ],
     'quotes': [
       'error',
-      'single'
+      'single',
+      { 'avoidEscape': true }
     ],
     'semi': [
       'error',

@@ -34,7 +34,7 @@ describe('When there is initially one user in db', () => {
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length + 1)
 
-    const usernames = usersAtEnd.map(u => u.username)
+    const usernames = usersAtEnd.map((u) => u.username)
     expect(usernames).toContain(newUser.username)
   })
 
@@ -44,7 +44,7 @@ describe('When there is initially one user in db', () => {
     const newUser = {
       username: 'root',
       name: 'Superuser',
-      password: 'salainen'
+      password: 'salainen',
     }
 
     const result = await api
@@ -64,7 +64,7 @@ describe('When there is initially one user in db', () => {
 
     const newUser = {
       name: 'name',
-      password: 'password'
+      password: 'password',
     }
 
     const result = await api
@@ -103,7 +103,7 @@ describe('When there is initially one user in db', () => {
     const newUser = {
       username: 'av',
       name: 'name',
-      password: 'password'
+      password: 'password',
     }
 
     const result = await api
@@ -112,7 +112,9 @@ describe('When there is initially one user in db', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
 
-    expect(result.body.error).toContain('`username` (`av`) is shorter than the minimum allowed length (3)')
+    expect(result.body.error).toContain(
+      '`username` (`av`) is shorter than the minimum allowed length (3)'
+    )
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toEqual(usersAtStart)
   })
@@ -123,7 +125,7 @@ describe('When there is initially one user in db', () => {
     const newUser = {
       username: 'username',
       name: 'name',
-      password: 'a1'
+      password: 'a1',
     }
 
     const result = await api
@@ -132,7 +134,9 @@ describe('When there is initially one user in db', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
 
-    expect(result.body.error).toContain('password must be longer than 3 characters')
+    expect(result.body.error).toContain(
+      'password must be longer than 3 characters'
+    )
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toEqual(usersAtStart)
   })

@@ -58,7 +58,7 @@ describe('addition of a new blog', () => {
       title: 'New Blog',
       author: 'blogman',
       url: 'www.blog.com',
-      likes: 100
+      likes: 100,
     }
 
     await api
@@ -74,7 +74,6 @@ describe('addition of a new blog', () => {
     const titles = blogsAtEnd.map((blog) => blog.title)
 
     expect(titles).toContain('New Blog')
-
   })
 
   test('blog without likes specified will have default 0 likes', async () => {
@@ -115,10 +114,7 @@ describe('addition of a new blog', () => {
       .send(blogWithoutTitle)
       .expect(400)
 
-    await api
-      .post('/api/blogs')
-      .send(blogWithoutUrl)
-      .expect(400)
+    await api.post('/api/blogs').send(blogWithoutUrl).expect(400)
 
     const blogsAtEnd = await helper.blogsInDb()
     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
@@ -144,7 +140,6 @@ describe('Deletion of a blog', () => {
       likes: 0,
     }
 
-
     await api
       .post('/api/blogs')
       .set('Authorization', `Bearer ${token}`)
@@ -166,7 +161,7 @@ describe('Deletion of a blog', () => {
     const blogsAtEnd = await Blog.find({}).populate('user')
     expect(blogsAtEnd).toHaveLength(blogsAtStart.length - 1)
 
-    const titles = blogsAtEnd.map(blog => blog.title)
+    const titles = blogsAtEnd.map((blog) => blog.title)
     expect(titles).not.toContain(blogToDelete.title)
   })
   test('fails with status code 401 if user is not authorized', async () => {
@@ -202,7 +197,6 @@ describe('Updating a blog', () => {
     expect(updatedBlog.likes).toBe(10)
   })
 })
-
 
 afterAll(async () => {
   await mongoose.connection.close()

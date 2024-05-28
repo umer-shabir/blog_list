@@ -1,10 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlbGxhcyIsImlkIjoiNjQzZDAxZWZlNGNhYTNiY2Q2NmY3ZTU5IiwiaWF0IjoxNjg0MzIyMzM1LCJleHAiOjE2ODQzMjU5MzV9.jfP0deRbXBcvmEiH8VhmdPQrRW1RLvB8qjHarHVb6UA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY0MzdjNjA0NDVlYzM4M2ZiMDVlYzAzYSIsImlhdCI6MTY5NjQyMTkzMiwiZXhwIjoxNjk2NDI1NTMyfQ.v9Tsgz0J8I911BR9so7TJaJ09Wc_M3m-nTfSesz7Ttw
 
 {
-  "title": "Type wars",
-  "author": "Robert C. Martin",
-  "url": "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
-  "likes": 2
+  "title": "React Pattern",
+  "author": "Michael Chann",
+  "url": "https://reactpatterns.com/",
+  "likes": 10
 }

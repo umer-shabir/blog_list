@@ -1,24 +1,70 @@
-.success,
-.error {
-  background: lightgrey;
-  font-size: 20px;
-  border-style: solid;
-  border-radius: 5px;
-  padding: 5px;
+.login-form,
+.blog-form,
+.comment-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.login-btn,
+.blog-btn {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.success {
-  color: green;
+.toggle-btn {
+  margin-top: 24px;
+  margin-bottom: 15px;
 }
 
-.error {
-  color: red;
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
 }
 
-.blog {
-  padding: 10px 4px;
-  border: 1px solid black;
-  margin: 5px 0px;
-  border-radius: 4px;
+.blog-details > * {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.like-btn {
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.remove-btn {
+  margin-top: 15px;
+}
+
+.comment-heading {
+  margin-top: 25px;
+}
+
+.comment-form {
+  width: 400px;
+}
+
+.comment-btn {
+  width: 160px;
+  height: 40px;
+  padding: 0;
+  margin-left: 8px;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+}
+
+.comment {
+  margin-top: 8px;
 }

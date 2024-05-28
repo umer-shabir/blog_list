@@ -1,14 +1,18 @@
-const Notification = ({ message }) => {
-  if (message === null) {
+import { useSelector } from 'react-redux'
+import { Alert } from 'react-bootstrap'
+
+const Notification = () => {
+  const notification = useSelector((state) => state.notification)
+  const variant = notification.type === 'success' ? 'success' : 'danger'
+
+  if (!notification.message) {
     return null
   }
 
-  const { notfiy, type } = message
-
   return (
-    <div className={type}>
-      <p>{notfiy}</p>
-    </div>
+    <Alert variant={variant}>
+      {notification.message}
+    </Alert>
   )
 }
 

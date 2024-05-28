@@ -11,7 +11,8 @@ const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 
-mongoose.connect(config.MONGODB_URI)
+mongoose
+  .connect(config.MONGODB_URI)
   .then(() => {
     logger.info('Connected to MongoDB')
   })
